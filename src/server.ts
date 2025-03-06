@@ -35,7 +35,7 @@ app.use((request: any, response: any, next: any) => {
 });
 
 // Anasayfa (httpİ://localhost:1111/)
-app.get("/", (request: any, response: any) => {}); // End of app.get
+app.get("/", (request: any, response: any) => { }); // End of app.get
 
 // Define a route handler for the GET / route
 app.get("/blog", (request: any, response: any) => {
@@ -43,11 +43,20 @@ app.get("/blog", (request: any, response: any) => {
   // response.send("blog");
   //response.render("blog", { message: "Bu blog sayfasııdır" });
   // CSRF Token EJS'e Gönderiyor
-  response.render("blog", { csrfToken:response.locals.csrfToken  }); 
+  response.render("blog", { csrfToken: response.locals.csrfToken });
 }); // End of app.get
 
-// Sunucu start
 
+app.get("/register", (request: any, response: any) => {
+  // register.ejs
+  // response.send("register");
+  //response.render("register", { message: "Bu register sayfasııdır" });
+  // CSRF Token EJS'e Gönderiyor
+  response.render("register", { csrfToken: response.locals.csrfToken });
+}); // End of app.get
+
+
+// Sunucu start
 app.listen(PORT, () => {
   console.log(`Server is listening on port http://localhost:${PORT}`);
 });

@@ -40,6 +40,13 @@ app.get("/blog", (request, response) => {
     // CSRF Token EJS'e Gönderiyor
     response.render("blog", { csrfToken: response.locals.csrfToken });
 }); // End of app.get
+app.get("/register", (request, response) => {
+    // register.ejs
+    // response.send("register");
+    //response.render("register", { message: "Bu register sayfasııdır" });
+    // CSRF Token EJS'e Gönderiyor
+    response.render("register", { csrfToken: response.locals.csrfToken });
+}); // End of app.get
 // Sunucu start
 app.listen(PORT, () => {
     console.log(`Server is listening on port http://localhost:${PORT}`);
