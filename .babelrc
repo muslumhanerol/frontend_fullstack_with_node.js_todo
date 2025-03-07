@@ -1,4 +1,6 @@
+//Ecma scriptin 6 nın üzerindeki versiyonlarını Ecma script 5 e çeviriyor.
 {
-    "presets": ["@babel/preset-env"]
-  }
-  
+  "presets": [
+    "@babel/preset-env"
+  ]
+}
