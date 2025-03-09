@@ -1,7 +1,7 @@
 {
-  "name": "2025_techcareer_frontend_fullstack_2",
+  "name": "frontend_fullstack_with_node.js_register",
   "version": "1.0.0",
-  "description": "[Github Linki](https://github.com/hamitmizrak/2025_techcareer_frontend_fullstack_2)\r ---",
+  "description": "[Github Linki](https://github.com/muslumhanerol/frontend_fullstack_with_node.js_register)\r ---",
   "main": "./dist/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
