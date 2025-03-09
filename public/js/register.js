@@ -62,26 +62,26 @@ $(document).ready(function () {
 
         // USERNAME
         if (username === "") {
-            showError("#username", "Başlık alanı boş bırakılamaz.");
+            showError("#username", "Username alanı boş bırakılamaz.");
             isValid = false;
         } else {
-            showValid("#username", "Başlık alanı geçerli.");
+            showValid("#username", "Username alanı geçerli.");
         }
 
         // PASSWORD
         if (password === "") {
-            showError("#password", "İçerik alanı boş bırakılamaz.");
+            showError("#password", "Password alanı boş bırakılamaz.");
             isValid = false;
         } else {
-            showValid("#password", "İçerik alanı geçerli.");
+            showValid("#password", "Password alanı geçerli.");
         }
 
         // EMAIL
         if (email === "") {
-            showError("#email", "Yazar alanı boş bırakılamaz.");
+            showError("#email", "Email alanı boş bırakılamaz.");
             isValid = false;
         } else {
-            showValid("#email", "Yazar alanı geçerli.");
+            showValid("#email", "Email alanı geçerli.");
         }
     };
 
