@@ -60,24 +60,24 @@ $(document).ready(function () {
         const password = $("#password").val().trim(); // Blog Formunda ki password(İçerik) alanını al
         const email = $("#email").val().trim(); // Blog Formunda ki email alanını al
 
-        // HEADER
-        if (header === "") {
+        // USERNAME
+        if (username === "") {
             showError("#username", "Başlık alanı boş bırakılamaz.");
             isValid = false;
         } else {
             showValid("#username", "Başlık alanı geçerli.");
         }
 
-        // CONTENT
-        if (content === "") {
+        // PASSWORD
+        if (password === "") {
             showError("#password", "İçerik alanı boş bırakılamaz.");
             isValid = false;
         } else {
             showValid("#password", "İçerik alanı geçerli.");
         }
 
-        // AUTHOR
-        if (author === "") {
+        // EMAIL
+        if (email === "") {
             showError("#email", "Yazar alanı boş bırakılamaz.");
             isValid = false;
         } else {
@@ -88,12 +88,12 @@ $(document).ready(function () {
 
     /////////////////////////////////////////////////////////////////////////////////
     // Kullanıcı İnput değerine veri girdiğinde hatalar yoksa hata mesajını göstermesin
-    $("#header, #content, #author, #tags").on("input", function () {
+    $("#username, #password, #email").on("input", function () {
         //clearErrors();
         const inputField = $(this);
         const inputFieldValue = inputField.val().trim();
         if (inputFieldValue === "") {
-            showError("#tags", "Bu alanı boş bırakılamaz.");
+            showError("#username, #password, #email", "Bu alanı boş bırakılamaz.");
         } else {
             showValid(inputField, "Geçerli");
         }
@@ -101,7 +101,7 @@ $(document).ready(function () {
 
     // Formu içeriklerini Temizleme(Sıfırlama)
     const resetForm = () => {
-        $("#blog-form")[0].reset();
+        $("#blog-register-form")[0].reset();
         isUpdating = false;
         updateId = null;
         //
@@ -122,7 +122,7 @@ $(document).ready(function () {
     /////////////////////////////////////////////////////////////////////////////////
     // CRUD
     // Blog Ekleme/Update
-    $("#blog-form").on("submit", function (event) {
+    $("#blog-register-form").on("submit", function (event) {
         // Browser sen dur ben biliyorum ne yapacağımı
         event.preventDefault();
         // Form Doğrulama
@@ -131,20 +131,19 @@ $(document).ready(function () {
         }
 
         // Data
-        const blogData = {
-            header: $("#header").val(),
-            content: $("#content").val(),
-            author: $("#author"),
-            tags: $("#tags").val(),
+        const blogRegisterData = {
+            header: $("#username").val(),
+            content: $("#password").val(),
+            author: $("#email"),
             _csrf: $("input[name='_csrf']").val(),
         };
 
         // Update
         if (isUpdating && updateId) {
             $.ajax({
-                url: `/blog/api/${updateId}`,
+                url: `/register/api/${updateId}`,
                 method: "PUT",
-                data: blogData,
+                data: blogRegisterData,
                 success: function (data) {
                     console.log("Güncelleme işlemi başarılı", data);
                     fetchBlogList();
@@ -155,28 +154,27 @@ $(document).ready(function () {
         } else {
             // Create
             $.ajax({
-                url: "/blog/api/",
+                url: "/register/api/",
                 method: "POST",
-                data: blogData,
+                data: blogRegisterData,
                 success: function (data) {
-                    console.log("Blog Ekleme işlemi başarılı", data);
+                    console.log("Register Ekleme işlemi başarılı", data);
                     fetchBlogList();
                     resetForm();
                 },
                 error: handleError,
             });
         } //end else
-    }); //end Blog Ekleme
+    }); //end Register Ekleme
 
     // Html tablosundaki ("#blog-table tbody") satırı Düzenle butonuna tıkladığımızda
     // Formu doldursun
-    $("#blog-table tbody").on("click", ".edit-btn", function () {
+    $("#blog-register-table tbody").on("click", ".edit-btn", function () {
         const row = $(this).closest("tr");
         const id = row.data("id");
-        $("#header").val(row.find("td:eq(1)").text());
-        $("#content").val(row.find("td:eq(2)").text());
-        $("#author").val(row.find("td:eq(3)").text());
-        $("#tags").val(row.find("td:eq(4)").text());
+        $("#username").val(row.find("td:eq(1)").text());
+        $("#password").val(row.find("td:eq(2)").text());
+        $("#email").val(row.find("td:eq(3)").text());
 
         isUpdating = true;
         // 1.YOL
@@ -185,23 +183,20 @@ $(document).ready(function () {
         $("#submit-btn").text("Güncelle");
     });
 
-    // Blog List
+    // Blog Register List
     const fetchBlogList = () => {
         $.ajax({
-            url: "/blog/api/",
+            url: "/register/api/",
             method: "GET",
             success: function (data) {
-                const $tbody = $("#blog-table tbody").empty();
+                const $tbody = $("#blog-register-table tbody").empty();
                 data.forEach((item) => {
                     $tbody.append(`
             <tr data-id="${item._id}">
               <td>${item._id}</td>
-              <td>${item.header}</td>
-              <td>${item.content}</td>
-              <td>${item.author}</td>
-              <td>${item.tags}</td>
-              <td>${item.views}</td>
-              <td>${item.status}</td>
+              <td>${item.username}</td>
+              <td>${item.password}</td>
+              <td>${item.email}</td>              
               <td>${item.dateInformation}</td>
               <td>
                 <button class="btn btn-warning btn-sm edit-btn" data-id="${blog._id}">Düzenle</button>
@@ -218,13 +213,13 @@ $(document).ready(function () {
     // Blog Bulma
 
     // Blog Silme
-    $("#blog-table tbody").on("click", ".delete-btn", function () {
+    $("#blog-register-table tbody").on("click", ".delete-btn", function () {
         const deleteId = $(this).closest("tr").data("id");
         if (!confirm(`${deleteId} numaralı ID Silmek istediğinizden emin misiniz?`))
             return;
 
         $.ajax({
-            url: `/blog/api/${deleteId}`,
+            url: `/register/api/${deleteId}`,
             method: "DELETE",
             //success:  fetchBlogList()
             success: function (data) {
