@@ -14,12 +14,11 @@
     "dev:babel:start": ""
   },
   "keywords": [
-    "Html5, Css3, Js, NodeJS, ES5+,TS, Bootstrap5, EJS, jQuery"
+    "Html5, Css3, Js, NodeJS, Express JS, ES5+,TS, Bootstrap5, EJS, jQuery"
   ],
-  "author": "MSc Computer Enginner Hamit Mızrak",
+  "author": "Front-End Developer Muslum Han Erol",
   "license": "ISC",
   "dependencies": {
-    "2025_techcareer_frontend_fullstack_2": "file:",
     "body-parser": "^1.20.3",
     "compression": "^1.7.5",
     "cookie-parser": "^1.4.7",
