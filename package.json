@@ -11,6 +11,7 @@
     "nodemon_app_watch": "nodemon --watch src --watch dist ./dist/server.js",
     "dev:setup": "npm install && tsc && concurrently -k \"tsc -w --pretty\" \"nodemon ./dist/server.js\"",
     "dev:start": "tsc && concurrently -k \"tsc -w --pretty\" \"nodemon ./dist/server.js\"",
+    "dev:tsc:nodemon:json-server": "tsc && concurrently -k \"tsc -w --pretty\" \"nodemon ./dist/server.js\" \"json-server --watch db.json --port 5000\"",
     "dev:babel:start": ""
   },
   "keywords": [
