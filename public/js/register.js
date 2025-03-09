@@ -52,7 +52,52 @@ $(document).ready(function () {
 
     /////////////////////////////////////////////////////////////////////////////////
     // VALIDATION
-    // Blog Form Kontrol Doğrulama(Validation)
+    // Blog Register Form Kontrol Doğrulama(Validation)
+    const validateForm = () => {
+        clearErrors(); // Hata mesajlarını temizle
+        let isValid = true; // Form doğrulama kontrolü
+        const header = $("#header").val().trim(); // Blog Formunda ki Content(İçerik) alanını al
+        const content = $("#content").val().trim(); // Blog Formunda ki Content(İçerik) alanını al
+        const charCount = content.length; // Content(İçerik) alanındaki karakter sayısını al
+        const author = $("#author").val().trim(); // Blog Formunda ki author(Yazar) alanını al
+        const tags = $("#tags").val().trim(); // Blog Formunda ki tags(Etiket) alanını al
+
+        // HEADER
+        if (header === "") {
+            showError("#header", "Başlık alanı boş bırakılamaz.");
+            isValid = false;
+        } else {
+            showValid("#header", "Başlık alanı geçerli.");
+        }
+
+        // CONTENT
+        if (content === "") {
+            showError("#content", "İçerik alanı boş bırakılamaz.");
+            isValid = false;
+        } else if (charCount > maxCharacters) {
+            showError("#content", "İçerik alanı 2000 karakter fazla olamaz.");
+            isValid = false;
+        } else {
+            showValid("#content", "İçerik alanı geçerli.");
+        }
+
+        // AUTHOR
+        if (author === "") {
+            showError("#author", "Yazar alanı boş bırakılamaz.");
+            isValid = false;
+        } else {
+            showValid("#author", "Yazar alanı geçerli.");
+        }
+
+        // TAGS
+        if (tags === "") {
+            showError("#tags", "Blog Etiket alanı boş bırakılamaz.");
+            isValid = false;
+        } else {
+            showValid("#tags", "Blog Etiket alanı geçerli.");
+        }
+        return isValid;
+    };
 
     /////////////////////////////////////////////////////////////////////////////////
     // Kullanıcı Blog Content(İçerik) alanına yazdıkça geriye kalan karakter sayısını güncelleyen
