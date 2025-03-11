@@ -1,3 +1,14 @@
 {
-  "blogs": []
+  "blogs": [
+    {
+      "id": 1,
+      "header": "İlk Blog Yazım",
+      "content": "Bu benim ilk blog yazım!",
+      "author": "Hamit Mızrak",
+      "tags": "JavaScript, JSON Server",
+      "views": 100,
+      "status": "Active",
+      "createdAt": "2025-03-10T12:00:00Z"
+    }
+  ]
 }

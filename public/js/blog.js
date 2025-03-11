@@ -234,13 +234,13 @@ $(document).ready(function () {
   }; // end fetchBlogList
 
   // Blog Bulma
-
+  
   // Blog Silme
   $("#blog-table tbody").on("click", ".delete-btn", function () {
     const deleteId = $(this).closest("tr").data("id");
-    if (!confirm(`${deleteId} numaralı ID Silmek istediğinizden emin misiniz?`))
+    if (!confirm(`${deleteId} numaralı ID Silmek istediğinizden emin misiniz?`)) 
       return;
-
+    
     $.ajax({
       url: `/blog/api/${deleteId}`,
       method: "DELETE",
