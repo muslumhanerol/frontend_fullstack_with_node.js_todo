@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Register Page</title>
+    <title>Todo Page</title>
     <!-- for language  -->
     <meta charset="utf-8" />
 
@@ -40,7 +40,7 @@ span[for="header"].form-label {HEADER}+
 input#header.form-control[type="text" name="header" placeholder="blog başlığı" title="blog başlığı" autofocus]
 -->
     <!-- form#blog-form>input#_csrf+(div.form-group.mb-3>span#id(id$){Content-$}+(input.form-control#header))*4 -->
-    <form action="/register" method="get" id="blog-register-form" name="blog-register-form">
+    <form action="/todo" method="get" id="blog-todo-form" name="blog-todo-form">
 
         <!-- CSRF -->
         <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>"></input>
@@ -78,7 +78,7 @@ input#header.form-control[type="text" name="header" placeholder="blog başlığ�
 
     <!-- table#blog-table.table.table-hover.table-striped>thead>tr>(th.text-uppercase{data-$})*9^^tbody -->
     <!-- TABLE -->
-    <table id="blog-register-table" class="table table-hover table-striped">
+    <table id="blog-todo-table" class="table table-hover table-striped">
         <!-- THEAD -->
         <thead>
             <tr>
@@ -114,7 +114,7 @@ input#header.form-control[type="text" name="header" placeholder="blog başlığ�
 
     <!-- external js -->
     <!-- NOT: `/css/styles.css` için  public dizininde olması gerekiyor -->
-    <script src="/js/register.js"></script>
+    <script src="/js/todo.js"></script>
 </body>
 
 </html>

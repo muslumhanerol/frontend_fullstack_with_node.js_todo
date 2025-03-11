@@ -47,12 +47,12 @@ app.get("/blog", (request: any, response: any) => {
 }); // End of app.get
 
 
-app.get("/register", (request: any, response: any) => {
+app.get("/todo", (request: any, response: any) => {
   // register.ejs
   // response.send("register");
   //response.render("register", { message: "Bu register sayfasııdır" });
   // CSRF Token EJS'e Gönderiyor
-  response.render("register", { csrfToken: response.locals.csrfToken });
+  response.render("todo", { csrfToken: response.locals.csrfToken });
 }); // End of app.get
 
 
