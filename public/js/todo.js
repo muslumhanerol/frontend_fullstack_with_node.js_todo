@@ -41,8 +41,8 @@ $(document).ready(function () {
         if (remaingContentChars < 0) {
             $("#char-count").removeClass("text-success").addClass("text-danger");
             showError(
-                "#content",
-                "Karakter sınırını aştınız. En fazla 2000 karakter girebilirsiniz."
+                "#todoContent",
+                "Karakter sınırını aştınız. En fazla 500 karakter girebilirsiniz."
             );
         } else {
             $("#char-count").removeClass("text-danger").addClass("text-success");
