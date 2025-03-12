@@ -4,6 +4,7 @@
   "delay": 1000,
   "watch": "db.json",
   "routes": {
-    "/api/blogs": "/blogs"
+    "/api/blogs": "/blogs",
+    "/api/todos": "/todos"
   }
 }
