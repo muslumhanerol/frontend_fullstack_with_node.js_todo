@@ -8,38 +8,38 @@ const mongoose = require("mongoose");
 
 // Schema adından (TodoPostSchema)
 const TodoPostSchema = new mongoose.Schema({
-    // 1.YOL (HEADER)
+    // 1.YOL (TODOHEADER)
     //header: String,
 
-    // 2.YOL (HEADER)
-    header: {
+    // 2.YOL (TODOHEADER)
+    todoHeader: {
         type: String,
-        required: [true, " Blog Başlığı için gereklidir"],
+        required: [true, " Todo Başlığı için gereklidir"],
         trim: true,
-        minleght: [5, "Blog başlığı için minumum 5 karakter olmalıdır."],
-        maxleght: [100, "Blog başlığı için maksimum 100 karakter olmalıdır."],
+        minleght: [5, "Todo başlığı için minumum 5 karakter olmalıdır."],
+        maxleght: [100, "Todo başlığı için maksimum 100 karakter olmalıdır."],
     },
 
-    // CONTENT
-    // content: String,
-    content: {
+    // TODOCONTENT
+    // todocontent: String,
+    todoContent: {
         type: String,
-        required: [true, " Blog içeriği için gereklidir"],
+        required: [true, " Todo içeriği için gereklidir"],
         trim: true,
-        minleght: [5, "Blog başlığı için minumum 5 karakter olmalıdır."],
+        minleght: [5, "Todo başlığı için minumum 5 karakter olmalıdır."],
     },
 
     // AUTHOR
-    author: String,
+    //author: String,
 
     // TAGS (Dizi)
     // Etiketler (alanı için en az bir etiket zorunluluğu getirildi.)
-    // Tags (Etiketler): Blog gönderilerine etiketler ekleyerek onları kategorize edebilir ve aramalarda bu etiketleri kullanabilirsiniz.
-    tags: {
-        type: [String], validate: function (v) {
-            return Array.isArray(v) && v.length > 0;
-        }, message: "En az bir etiket girmelisiniz",
-    },
+    // Tags (Etiketler): Todo gönderilerine etiketler ekleyerek onları kategorize edebilir ve aramalarda bu etiketleri kullanabilirsiniz.
+    // tags: {
+    //     type: [String], validate: function (v) {
+    //         return Array.isArray(v) && v.length > 0;
+    //     }, message: "En az bir etiket girmelisiniz",
+    // },
 
     // DATE
     dateInformation: {
@@ -47,14 +47,14 @@ const TodoPostSchema = new mongoose.Schema({
     },
 
     // VIEWS
-    // Blog Görüntüleme (Default: 0)
-    views: {
-        type: Number, default: 0, min: [0, "Blog gösterimi için Negatif değer verilmez"],
-    },
+    // Todo Görüntüleme (Default: 0)
+    // views: {
+    //     type: Number, default: 0, min: [0, "Todo gösterimi için Negatif değer verilmez"],
+    // },
 
     // STATUS
     // Durum (Proje için bu bir taslak mı yoksa canlı ortam için mi ?)
-    // Enum Durum Alanı: status: Blog gönderisinin durumu "draft" veya "published" olarak belirlenir. Bu, bir gönderinin taslak mı yoksa yayınlanmış mı olduğunu gösterir.
+    // Enum Durum Alanı: status: Todo gönderisinin durumu "draft" veya "published" olarak belirlenir. Bu, bir gönderinin taslak mı yoksa yayınlanmış mı olduğunu gösterir.
     status: {
         type: String, enum: ["draft", "published"], default: "draft",
     },
@@ -67,28 +67,28 @@ const TodoPostSchema = new mongoose.Schema({
 
 ////////////////////////////////////////////////////////////////////
 // Sanal alan (Virtuals) - İçerik özetini döndürme
-// summary: Blog içeriğinin ilk 100 karakterini döndüren bir sanal alan ekledik.
+// summary: Todo içeriğinin ilk 100 karakterini döndüren bir sanal alan ekledik.
 // Bu, API cevaplarında sadece kısa bir özet göstermek için kullanılabilir.
 TodoPostSchema.virtual("summary").get(function () {
-    return this.content.substring(0, 100) + "..."; // İlk 100 karakter ve ardından ...
+    return this.todoContent.substring(0, 100) + "..."; // İlk 100 karakter ve ardından ...
 });
 
 // Şema için ön middleware - Her kaydetmeden önce başlık ve içeriği büyük harflerle güncelleme
 // Şema Middleware (Pre-save Hook): pre("save"): Kaydedilmeden önce başlık ve içeriğin ilk harflerini büyük yapmak için bir ön middleware ekledik.
 TodoPostSchema.pre("save", function (next) {
-    this.header = this.header.charAt(0).toUpperCase() + this.header.slice(1);
-    this.content = this.content.charAt(0).toUpperCase() + this.content.slice(1);
+    this.todoHeader = this.todoHeader.charAt(0).toUpperCase() + this.todoHeader.slice(1);
+    this.todoContent = this.todoContent.charAt(0).toUpperCase() + this.todoContent.slice(1);
     next();
 });
 
-// Statik metot - Belirli bir yazara ait tüm blogları bulma
-// Statik Metot: findByAuthor: Belirli bir yazara ait tüm blog gönderilerini bulmak için statik bir metot ekledik. Bu, belirli yazara göre blog filtrelemek için kullanılabilir.
+// Statik metot - Belirli bir yazara ait tüm Todoları bulma
+// Statik Metot: findByAuthor: Belirli bir yazara ait tüm Todo gönderilerini bulmak için statik bir metot ekledik. Bu, belirli yazara göre Todo filtrelemek için kullanılabilir.
 TodoPostSchema.statics.findByAuthor = function (authorName) {
     return this.find({ author: authorName });
 };
 
 // Instance metodu - Görüntüleme sayısını artırma
-// Instance Metot: incrementViews: Her blog gönderisine ait görüntüleme sayısını artırmak için bir instance metot ekledik. Bu, bir gönderi görüntülendiğinde görüntüleme sayısını artırmanızı sağlar.
+// Instance Metot: incrementViews: Her Todo gönderisine ait görüntüleme sayısını artırmak için bir instance metot ekledik. Bu, bir gönderi görüntülendiğinde görüntüleme sayısını artırmanızı sağlar.
 TodoPostSchema.methods.incrementViews = function () {
     this.views += 1;
     return this.save();
@@ -97,8 +97,8 @@ TodoPostSchema.methods.incrementViews = function () {
 // Sanal alanların JSON'a dahil edilmesi
 TodoPostSchema.set("toJSON", { virtuals: true });
 
-// Module Exports modelName(BlogModel)
-// BlogModel modelini dışa aktarmak
+// Module Exports modelName(TodoModel)
+// TodoModel modelini dışa aktarmak
 // Post kullanımı daha yaygındır
 // module.exports = mongoose.model('Post', TodoPostSchema );
 
@@ -107,5 +107,5 @@ TodoPostSchema.set("toJSON", { virtuals: true });
 // module.exports = mongoose.model("MongoTodoModel", TodoPostSchema);
 
 // 2.YOL
-const Blog = mongoose.model("MongoTodoModel", TodoPostSchema, "posts");
-module.exports = Blog;
+const Todo = mongoose.model("MongoTodoModel", TodoPostSchema, "posts");
+module.exports = Todo;
