@@ -1,108 +1,114 @@
 <!-- blog.ejs -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Blog Page</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" />
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" crossorigin="anonymous" />
-    
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <!-- External CSS -->
-    <link rel="stylesheet" href="/css/index.css" />
 
-       <!-- Internal CSS for Frosted Glass Effect -->
-    <style>
-      .frosted-glass {
-        background: rgba(252, 252, 252, 0.2);
-        backdrop-filter: blur(10px);
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 4px 6px rgba(160, 133, 133, 0.1);
-      }
-    </style>
-  </head>
-  
-  <body class="container">
-    <!-- Navbar -->
-    <%- include("partials/navbar") %>
+<head>
+  <title>Blog Page</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    crossorigin="anonymous" />
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    crossorigin="anonymous" />
+
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+  <!-- External CSS -->
+  <link rel="stylesheet" href="/css/index.css" />
+
+  <!-- Internal CSS for Frosted Glass Effect -->
+  <style>
+    .frosted-glass {
+      background: rgba(252, 252, 252, 0.2);
+      backdrop-filter: blur(10px);
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 6px rgba(160, 133, 133, 0.1);
+    }
+  </style>
+</head>
+
+<body class="container">
+  <!-- Navbar -->
+  <%- include("partials/navbar") %>
 
 
     <!-- Main Content -->
     <main class="container my-5">
       <section id="blog" class="frosted-glass">
 
-    <h3 class="text-center mt-4 mb-4 text-primary display-5 text-uppercase">Blog Form</h3>
-    
-    <form  action="/blog" method="post" id="blog-form" name="blog-form">
-      <!-- CSRF Token -->
-      <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" />
-      
-      <div class="form-group mb-3">
-        <label for="header" class="form-label">HEADER</label>
-        <input type="text" class="form-control" id="header" name="header" placeholder="Blog başlığı" required />
-      </div>
-      
-      <div class="form-group mb-3">
-        <label for="content" class="form-label">CONTENT</label>
-        <textarea class="form-control" id="content" name="content" placeholder="Blog içeriği" rows="5" required></textarea>
-        <small id="char-count" class="text-success">Kalan Harf Sayısı: 2000</small>
-      </div>
-      
-      <div class="form-group mb-3">
-        <label for="author" class="form-label">AUTHOR</label>
-        <input type="text" class="form-control" id="author" name="author" placeholder="Yazar adı" required />
-      </div>
-      
-      <div class="form-group mb-3">
-        <label for="tags" class="form-label">TAGS</label>
-        <input type="text" class="form-control" id="tags" name="tags" placeholder="Blog etiketleri" required />
-      </div>
-      
-      <div class="form-group mb-3">
-        <button type="reset" class="btn btn-danger">Temizle</button>
-        <button type="submit" class="btn btn-primary">Gönder</button>
-      </div>
-    </form>
-    
-    <hr/>
-    <h2 class="text-primary display-2">Blog List</h2>
-    
-    <table id="blog-table" class="table table-hover table-striped">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>HEADER</th>
-          <th>CONTENT</th>
-          <th>AUTHOR</th>
-          <th>TAGS</th>
-          <th>CREATED DATE</th>
-          <th>ACTIONS</th>
-        </tr>
-      </thead>
-      <tbody></tbody>
-    </table>
-    
-    <a class="btn btn-primary" href="/">Anasayfa'ya Git</a>
-    </section>
+        <h3 class="text-center mt-4 mb-4 text-primary display-5 text-uppercase">Blog Form</h3>
+
+        <form action="/blog" method="post" id="blog-form" name="blog-form">
+          <!-- CSRF Token -->
+          <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" />
+
+          <div class="form-group mb-3">
+            <label for="header" class="form-label">HEADER</label>
+            <input type="text" class="form-control" id="header" name="header" placeholder="Blog başlığı" required />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="content" class="form-label">CONTENT</label>
+            <textarea class="form-control" id="content" name="content" placeholder="Blog içeriği" rows="5"
+              required></textarea>
+            <small id="char-count" class="text-success">Kalan Harf Sayısı: 2000</small>
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="author" class="form-label">AUTHOR</label>
+            <input type="text" class="form-control" id="author" name="author" placeholder="Yazar adı" required />
+          </div>
+
+          <div class="form-group mb-3">
+            <label for="tags" class="form-label">TAGS</label>
+            <input type="text" class="form-control" id="tags" name="tags" placeholder="Blog etiketleri" required />
+          </div>
+
+          <div class="form-group mb-3">
+            <button type="reset" class="btn btn-danger">Temizle</button>
+            <button type="submit" class="btn btn-primary">Gönder</button>
+          </div>
+        </form>
+
+        <hr />
+        <h2 class="text-primary display-2">Blog List</h2>
+
+        <table id="blog-table" class="table table-hover table-striped">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>HEADER</th>
+              <th>CONTENT</th>
+              <th>AUTHOR</th>
+              <th>TAGS</th>
+              <th>CREATED DATE</th>
+              <th>ACTIONS</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+
+        <a class="btn btn-primary" href="/">Anasayfa'ya Git</a>
+      </section>
     </main>
-    
+
     <!-- Footer -->
     <%- include("partials/footer") %>
-    
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-    
-    <!-- External JS -->
-    <script src="/js/blog.js"></script>
-  </body>
+
+      <!-- Bootstrap JS -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+
+      <!-- External JS -->
+      <script src="/js/blog.js"></script>
+</body>
+
 </html>
 
 <!-- Diğer dosyalar benzer şekilde düzenlendi -->
