@@ -22,15 +22,15 @@ $(document).ready(function () {
     };
 
     const updateCharCount = () => {
-        const content = $("#content").val();
-        const charCount = content.length;
+        const todoContent = $("#todoContent").val();
+        const charCount = todoContent.length;
         const remainingChars = maxCharacters - charCount;
         $("#char-count").text(`Kalan Harf sayısı: ${remainingChars}`);
 
         if (remainingChars < 0) {
             $("#char-count").removeClass("text-success").addClass("text-danger");
             showError(
-                "#content",
+                "#todoContent",
                 "Karakter sınırını aştınız. En fazla 2000 karakter girebilirsiniz."
             );
         } else {
@@ -39,58 +39,47 @@ $(document).ready(function () {
         }
     };
 
-    $("#content").on("input", function () {
+    $("#todoContent").on("input", function () {
         updateCharCount();
     });
 
     const validateForm = () => {
         clearErrors();
         let isValid = true;
-        const header = $("#header").val().trim();
-        const content = $("#content").val().trim();
-        const author = $("#author").val().trim();
-        const tags = $("#tags").val().trim();
+        const todoHeader = $("#todoHeader").val().trim();
+        const todoContent = $("#todoContent").val().trim();
 
-        if (!header) {
-            showError("#header", "Başlık alanı boş bırakılamaz.");
+
+        if (!todoHeader) {
+            showError("#todoHeader", "Başlık alanı boş bırakılamaz.");
             isValid = false;
         }
-        if (!content || content.length > maxCharacters) {
-            showError("#content", "İçerik alanı uygun değil.");
-            isValid = false;
-        }
-        if (!author) {
-            showError("#author", "Yazar alanı boş bırakılamaz.");
-            isValid = false;
-        }
-        if (!tags) {
-            showError("#tags", "Etiket alanı boş bırakılamaz.");
+        if (!todoContent || content.length > maxCharacters) {
+            showError("#todoContent", "İçerik alanı uygun değil.");
             isValid = false;
         }
         return isValid;
     };
 
-    $("#blog-form").on("submit", function (event) {
+    $("#todo-form").on("submit", function (event) {
         event.preventDefault();
         if (!validateForm()) {
             return;
         }
 
-        const blogData = {
-            header: $("#header").val(),
-            content: $("#content").val(),
-            author: $("#author").val(),
-            tags: $("#tags").val(),
+        const todoData = {
+            todoHeader: $("#todoHeader").val(),
+            todoContent: $("#todoContent").val(),
             _csrf: $("input[name='_csrf']").val(),
         };
 
         const ajaxOptions = {
-            url: isUpdating ? `/blog/api/${updateId}` : "/blog/api/",
+            url: isUpdating ? `/todo/api/${updateId}` : "/todo/api/",
             method: isUpdating ? "PUT" : "POST",
-            data: blogData,
+            data: todoData,
             success: function (data) {
                 console.log("İşlem başarılı", data);
-                fetchBlogList();
+                fetchTodoList();
                 resetForm();
             },
             error: function (xhr, status, error) {
@@ -101,19 +90,17 @@ $(document).ready(function () {
         $.ajax(ajaxOptions);
     });
 
-    $("#blog-table tbody").on("click", ".edit-btn", function () {
+    $("#todo-table tbody").on("click", ".edit-btn", function () {
         const row = $(this).closest("tr");
         updateId = row.data("id");
 
         if (!updateId) {
-            alert("Bu blog kaydının ID’si eksik, düzenleme yapılamaz!");
+            alert("Bu Todo kaydının ID’si eksik, düzenleme yapılamaz!");
             return;
         }
 
-        $("#header").val(row.find("td:eq(1)").text());
-        $("#content").val(row.find("td:eq(2)").text());
-        $("#author").val(row.find("td:eq(3)").text());
-        $("#tags").val(row.find("td:eq(4)").text());
+        $("#todoHeader").val(row.find("td:eq(1)").text());
+        $("#todoContent").val(row.find("td:eq(2)").text());
         isUpdating = true;
         $("#submit-btn").text("Güncelle");
 
@@ -121,11 +108,11 @@ $(document).ready(function () {
     });
 
 
-    $("#blog-table tbody").on("click", ".delete-btn", function () {
+    $("#todo-table tbody").on("click", ".delete-btn", function () {
         const deleteId = $(this).closest("tr").data("id");
 
         if (!deleteId) {
-            alert("Silinecek blog ID’si bulunamadı!");
+            alert("Silinecek Todo ID’si bulunamadı!");
             return;
         }
 
@@ -133,11 +120,11 @@ $(document).ready(function () {
             return;
 
         $.ajax({
-            url: `/blog/api/${deleteId}`,
+            url: `/todo/api/${deleteId}`,
             method: "DELETE",
             success: function (data) {
                 console.log("Silme işlemi başarılı", data);
-                fetchBlogList();
+                fetchTodoList();
             },
             error: function (xhr, status, error) {
                 console.error("Silme işlemi başarısız:", error);
@@ -146,20 +133,18 @@ $(document).ready(function () {
     });
 
 
-    const fetchBlogList = () => {
+    const fetchTodoList = () => {
         $.ajax({
-            url: "/blog/api/",
+            url: "/todo/api/",
             method: "GET",
             success: function (data) {
-                const $tbody = $("#blog-table tbody").empty();
+                const $tbody = $("#todo-table tbody").empty();
                 data.forEach((item) => {
                     $tbody.append(`
             <tr data-id="${item.id}">
               <td>${item.id}</td>
-              <td>${item.header}</td>
-              <td>${item.content}</td>
-              <td>${item.author}</td>
-              <td>${item.tags}</td>
+              <td>${item.todoHeaderheader}</td>
+              <td>${item.todoContentcontent}</td>             
               <td>${item.createdAt}</td>
               <td>
                 <button class="btn btn-warning btn-sm edit-btn">Düzenle</button>
@@ -175,6 +160,6 @@ $(document).ready(function () {
         });
     };
 
-    fetchBlogList();
+    fetchTodoList();
     updateCharCount();
 });
