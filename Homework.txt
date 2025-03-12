@@ -1,4 +1,0 @@
-json-server Nedir ?
-Babel Nedir ?
-CSRF Nedir ?
-
