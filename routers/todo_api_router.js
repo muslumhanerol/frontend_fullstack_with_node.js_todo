@@ -52,62 +52,62 @@ router.post("/", (req, res) => {
 
         res.status(201).json(newTodo);
     } catch (error) {
-        handleError(res, "Blog ekleme işlemi başarısız!");
+        handleError(res, "Todo ekleme işlemi başarısız!");
     }
 });
 
-// TÜM BLOGLARI LİSTELEME (READ)
+// TÜM TODOLARI LİSTELEME (READ)
 router.get("/", (req, res) => {
     try {
         const db = readDB();
         res.status(200).json(db.todos);
     } catch (error) {
-        handleError(res, "Blog listeleme başarısız");
+        handleError(res, "TODO listeleme başarısız");
     }
 });
 
-// TEK BİR BLOG GETİRME (READ)
+// TEK BİR TODO GETİRME (READ)
 router.get("/:id", (req, res) => {
     try {
         const db = readDB();
-        const blog = db.todos.find((b) => b.id === parseInt(req.params.id));
-        if (!blog) return handleError(res, "Blog bulunamadı!");
-        res.status(200).json(blog);
+        const todo = db.todos.find((b) => b.id === parseInt(req.params.id));
+        if (!todo) return handleError(res, "Todo bulunamadı!");
+        res.status(200).json(todo);
     } catch (error) {
-        handleError(res, "Blog getirme başarısız");
+        handleError(res, "Todo getirme başarısız");
     }
 });
 
-// BLOG GÜNCELLEME (UPDATE)
+// TODO GÜNCELLEME (UPDATE)
 router.put("/:id", (req, res) => {
     try {
         let db = readDB();
-        const blogIndex = db.todos.findIndex(
+        const todoIndex = db.todos.findIndex(
             (b) => b.id === parseInt(req.params.id)
         );
-        if (blogIndex === -1) return handleError(res, "Blog bulunamadı!");
+        if (todoIndex === -1) return handleError(res, "Todo bulunamadı!");
 
-        db.todos[blogIndex] = { ...db.todos[blogIndex], ...req.body };
+        db.todos[todoIndex] = { ...db.todos[todoIndex], ...req.body };
         writeDB(db);
-        res.status(200).json(db.todos[blogIndex]);
+        res.status(200).json(db.todos[todoIndex]);
     } catch (error) {
-        handleError(res, "Blog güncelleme başarısız!");
+        handleError(res, "Todo güncelleme başarısız!");
     }
 });
 
-// BLOG SİLME (DELETE)
+// TODO SİLME (DELETE)
 router.delete("/:id", (req, res) => {
     try {
         let db = readDB();
         const newTodos = db.todos.filter((b) => b.id !== parseInt(req.params.id));
         if (db.todos.length === newTodos.length)
-            return handleError(res, "Blog bulunamadı!");
+            return handleError(res, "Todo bulunamadı!");
 
         db.todos = newTodos;
         writeDB(db);
-        res.status(200).json({ message: "Blog başarıyla silindi." });
+        res.status(200).json({ message: "Todo başarıyla silindi." });
     } catch (error) {
-        handleError(res, "Blog silme başarısız!");
+        handleError(res, "Todo silme başarısız!");
     }
 });
 
