@@ -1,7 +1,7 @@
 $(document).ready(function () {
     let isUpdating = false;
     let updateId = null;
-    const maxCharacters = 2000;
+    const maxCharacters = 500;
 
     const clearErrors = () => {
         $(".error-message, .valid-message").remove();
@@ -54,7 +54,7 @@ $(document).ready(function () {
             showError("#todoHeader", "Başlık alanı boş bırakılamaz.");
             isValid = false;
         }
-        if (!todoContent || content.length > maxCharacters) {
+        if (!todoContent || todoContent.length > maxCharacters) {
             showError("#todoContent", "İçerik alanı uygun değil.");
             isValid = false;
         }
@@ -143,8 +143,8 @@ $(document).ready(function () {
                     $tbody.append(`
             <tr data-id="${item.id}">
               <td>${item.id}</td>
-              <td>${item.todoHeaderheader}</td>
-              <td>${item.todoContentcontent}</td>             
+              <td>${item.todoHeader}</td>
+              <td>${item.todoContent}</td>             
               <td>${item.createdAt}</td>
               <td>
                 <button class="btn btn-warning btn-sm edit-btn">Düzenle</button>
