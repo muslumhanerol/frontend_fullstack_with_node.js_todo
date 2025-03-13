@@ -440,7 +440,7 @@ app.get("/", (request: any, response: any) => {
 app.get("/", (request: any, response: any) => {
   response.render("index", {
     title: "Todo Sayfası",
-    blogPosts: todoPosts, // blogPosts değişkenini EJS şablonuna gönderiyoruz
+    todoPosts: todoPosts, // todoPosts değişkenini EJS şablonuna gönderiyoruz
   });
 });
 
@@ -581,16 +581,16 @@ app.post("/blog", csrfProtection, (request: any, response: any) => {
 });
 
 
+
 app.post("/todo", csrfProtection, (request: any, response: any) => {
   const todoData = {
     todoHeader: request.body.todoHeader,
     todoContent: request.body.todoContent,
-
   };
 
   // Validation
   if (!todoData.todoHeader || !todoData.todoContent) {
-    return response.status(400).send("Blog verisi eksik!");
+    return response.status(400).send("Todo verisi eksik!");
   }
 
   if (!request.body) {
@@ -646,11 +646,11 @@ app.post("/todo", csrfProtection, (request: any, response: any) => {
 // Router (Rotalar)
 const blogRouter = require("../routers/blog_api_router");
 
-const todoRouter = require("../routers/todo_api_router");
-
-
 // Blog'ta API Rotalarını kullanmak için
 app.use("/blog/api", blogRouter);
+
+
+const todoRouter = require("../routers/todo_api_router");
 
 app.use("/todo/api", todoRouter);
 

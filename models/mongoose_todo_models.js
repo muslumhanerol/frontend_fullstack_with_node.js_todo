@@ -29,18 +29,6 @@ const TodoPostSchema = new mongoose.Schema({
         minleght: [5, "Todo başlığı için minumum 5 karakter olmalıdır."],
     },
 
-    // AUTHOR
-    //author: String,
-
-    // TAGS (Dizi)
-    // Etiketler (alanı için en az bir etiket zorunluluğu getirildi.)
-    // Tags (Etiketler): Todo gönderilerine etiketler ekleyerek onları kategorize edebilir ve aramalarda bu etiketleri kullanabilirsiniz.
-    // tags: {
-    //     type: [String], validate: function (v) {
-    //         return Array.isArray(v) && v.length > 0;
-    //     }, message: "En az bir etiket girmelisiniz",
-    // },
-
     // DATE
     dateInformation: {
         type: String, default: Date.now(),
@@ -83,16 +71,16 @@ TodoPostSchema.pre("save", function (next) {
 
 // Statik metot - Belirli bir yazara ait tüm Todoları bulma
 // Statik Metot: findByAuthor: Belirli bir yazara ait tüm Todo gönderilerini bulmak için statik bir metot ekledik. Bu, belirli yazara göre Todo filtrelemek için kullanılabilir.
-TodoPostSchema.statics.findByAuthor = function (authorName) {
-    return this.find({ author: authorName });
-};
+// TodoPostSchema.statics.findByAuthor = function (authorName) {
+//     return this.find({ author: authorName });
+// };
 
 // Instance metodu - Görüntüleme sayısını artırma
 // Instance Metot: incrementViews: Her Todo gönderisine ait görüntüleme sayısını artırmak için bir instance metot ekledik. Bu, bir gönderi görüntülendiğinde görüntüleme sayısını artırmanızı sağlar.
-TodoPostSchema.methods.incrementViews = function () {
-    this.views += 1;
-    return this.save();
-};
+// TodoPostSchema.methods.incrementViews = function () {
+//     this.views += 1;
+//     return this.save();
+// };
 
 // Sanal alanların JSON'a dahil edilmesi
 TodoPostSchema.set("toJSON", { virtuals: true });

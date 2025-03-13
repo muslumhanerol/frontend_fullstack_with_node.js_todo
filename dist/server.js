@@ -374,7 +374,7 @@ app.get("/", (request, response) => {
 app.get("/", (request, response) => {
     response.render("index", {
         title: "Todo Sayfası",
-        blogPosts: todoPosts, // blogPosts değişkenini EJS şablonuna gönderiyoruz
+        todoPosts: todoPosts, // todoPosts değişkenini EJS şablonuna gönderiyoruz
     });
 });
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -486,7 +486,7 @@ app.post("/todo", csrfProtection, (request, response) => {
     };
     // Validation
     if (!todoData.todoHeader || !todoData.todoContent) {
-        return response.status(400).send("Blog verisi eksik!");
+        return response.status(400).send("Todo verisi eksik!");
     }
     if (!request.body) {
         console.log("Boş gövde alındı.");
@@ -533,9 +533,9 @@ app.post("/todo", csrfProtection, (request, response) => {
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // Router (Rotalar)
 const blogRouter = require("../routers/blog_api_router");
-const todoRouter = require("../routers/todo_api_router");
 // Blog'ta API Rotalarını kullanmak için
 app.use("/blog/api", blogRouter);
+const todoRouter = require("../routers/todo_api_router");
 app.use("/todo/api", todoRouter);
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // 404 Hata sayfası
