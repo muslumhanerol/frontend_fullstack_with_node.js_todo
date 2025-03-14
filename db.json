@@ -9,5 +9,14 @@
       "createdAt": "2025-03-11T23:26:20.550Z",
       "_csrf": "XXVDRZD0-lMQgWSArxm9Asb-KL0hf9y28aYY"
     }
+  ],
+  "todos": [
+    {
+      "id": 1,
+      "todoHeader": "Todo Header",
+      "todoContent": "Todo Content",
+      "createdAt": "2025-03-11T23:26:20.550Z",
+      "_csrf": "XXVDRZD0-lMQgWSArxm9Asb-KL0hf9y28aYY"
+    }
   ]
 }
