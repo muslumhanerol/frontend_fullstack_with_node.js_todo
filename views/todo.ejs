@@ -36,6 +36,7 @@
         #todo h3 h2 {
             font-family: "Poppins", sans-serif;
             font-weight: 300;
+
         }
     </style>
 
@@ -43,29 +44,27 @@
 
 </head>
 
-<body class="container">
+<body style="background-color:antiquewhite" class="container">
     <!-- Navbar -->
     <%- include("partials/navbar") %>
-
-
         <!-- Main Content -->
         <main class="container my-5">
             <section id="todo" class="frosted-glass">
 
-                <h3 class="text-center mt-4 mb-4 display-5 text-light text-uppercase">Todo Form</h3>
+                <h3 class="text-center mt-4 mb-4 display-5 text-primary text-uppercase">Todo Form</h3>
 
                 <form action="/todo" method="post" id="todo-form" name="todo-form">
                     <!-- CSRF Token -->
                     <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" />
 
                     <div class="form-group mb-3">
-                        <label for="todoHeader" class="form-label">TODO BAŞLIĞI</label>
+                        <label for="todoHeader" class="form-label text-primary">TODO BAŞLIĞI</label>
                         <input type="text" class="form-control" id="todoHeader" name="todoHeader"
                             placeholder="Todo başlığı" required />
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="todoContent" class="form-label">TODO İÇERİĞİ</label>
+                        <label for="todoContent" class="form-label text-primary">TODO İÇERİĞİ</label>
                         <textarea class="form-control" id="todoContent" name="todoContent" placeholder="Todo içeriği"
                             rows="3" required></textarea>
                         <small id="char-count" class="text-success">Kalan Harf Sayısı: 500</small>
@@ -78,7 +77,7 @@
                 </form>
 
                 <hr />
-                <h2 class="text-center mt-4 mb-4 text-light display-5 text-uppercase">Todo Listesi</h2>
+                <h2 class="text-center mt-4 mb-4 text-primary display-5 text-uppercase">Todo Listesi</h2>
 
                 <table id="todo-table" class="table table-hover table-striped">
                     <thead>
