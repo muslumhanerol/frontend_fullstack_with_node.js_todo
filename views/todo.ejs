@@ -23,6 +23,8 @@
 
     <!-- Internal CSS for Frosted Glass Effect -->
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
         .frosted-glass {
             background: rgba(252, 252, 252, 0.2);
             backdrop-filter: blur(10px);
@@ -30,7 +32,15 @@
             padding: 20px;
             box-shadow: 0 4px 6px rgba(160, 133, 133, 0.1);
         }
+
+        #todo h3 h2 {
+            font-family: "Poppins", sans-serif;
+            font-weight: 300;
+        }
     </style>
+
+
+
 </head>
 
 <body class="container">
@@ -42,42 +52,42 @@
         <main class="container my-5">
             <section id="todo" class="frosted-glass">
 
-                <h3 class="text-center mt-4 mb-4 text-primary display-5 text-uppercase">Todo Form</h3>
+                <h3 class="text-center mt-4 mb-4 display-5 text-light text-uppercase">Todo Form</h3>
 
                 <form action="/todo" method="post" id="todo-form" name="todo-form">
                     <!-- CSRF Token -->
                     <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" />
 
                     <div class="form-group mb-3">
-                        <label for="todoHeader" class="form-label">TODO HEADER</label>
+                        <label for="todoHeader" class="form-label">TODO BAŞLIĞI</label>
                         <input type="text" class="form-control" id="todoHeader" name="todoHeader"
                             placeholder="Todo başlığı" required />
                     </div>
 
                     <div class="form-group mb-3">
-                        <label for="todoContent" class="form-label">TODO CONTENT</label>
+                        <label for="todoContent" class="form-label">TODO İÇERİĞİ</label>
                         <textarea class="form-control" id="todoContent" name="todoContent" placeholder="Todo içeriği"
                             rows="3" required></textarea>
                         <small id="char-count" class="text-success">Kalan Harf Sayısı: 500</small>
                     </div>
 
                     <div class="form-group mb-3">
-                        <button type="reset" class="btn btn-danger">Temizle</button>
-                        <button type="submit" class="btn btn-primary">Gönder</button>
+                        <button type="reset" class="btn btn-primary">Temizle</button>
+                        <button type="submit" class="btn btn-success">Gönder</button>
                     </div>
                 </form>
 
                 <hr />
-                <h2 class="text-primary display-2">Todo List</h2>
+                <h2 class="text-center mt-4 mb-4 text-light display-5 text-uppercase">Todo Listesi</h2>
 
                 <table id="todo-table" class="table table-hover table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>TODO HEADER</th>
-                            <th>TODO CONTENT</th>
-                            <th>CREATED DATE</th>
-                            <th>ACTIONS</th>
+                            <th>TODO BAŞLIĞI</th>
+                            <th>TODO İÇERİĞİ</th>
+                            <th>OLUŞTURMA TARİHİ</th>
+                            <th>İŞLEMLER</th>
                         </tr>
                     </thead>
                     <tbody></tbody>
