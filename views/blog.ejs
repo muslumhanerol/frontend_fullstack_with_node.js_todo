@@ -33,7 +33,7 @@
   </style>
 </head>
 
-<body class="container">
+<body style="background-color:antiquewhite" class="container">
   <!-- Navbar -->
   <%- include("partials/navbar") %>
 
@@ -49,35 +49,35 @@
           <input type="hidden" id="_csrf" name="_csrf" value="<%= csrfToken %>" />
 
           <div class="form-group mb-3">
-            <label for="header" class="form-label">HEADER</label>
+            <label for="header" class="form-label text-primary">HEADER</label>
             <input type="text" class="form-control" id="header" name="header" placeholder="Blog başlığı" required />
           </div>
 
           <div class="form-group mb-3">
-            <label for="content" class="form-label">CONTENT</label>
+            <label for="content" class="form-label text-primary">CONTENT</label>
             <textarea class="form-control" id="content" name="content" placeholder="Blog içeriği" rows="5"
               required></textarea>
             <small id="char-count" class="text-success">Kalan Harf Sayısı: 2000</small>
           </div>
 
           <div class="form-group mb-3">
-            <label for="author" class="form-label">AUTHOR</label>
+            <label for="author" class="form-label text-primary">AUTHOR</label>
             <input type="text" class="form-control" id="author" name="author" placeholder="Yazar adı" required />
           </div>
 
           <div class="form-group mb-3">
-            <label for="tags" class="form-label">TAGS</label>
+            <label for="tags" class="form-label text-primary">TAGS</label>
             <input type="text" class="form-control" id="tags" name="tags" placeholder="Blog etiketleri" required />
           </div>
 
           <div class="form-group mb-3">
-            <button type="reset" class="btn btn-danger">Temizle</button>
-            <button type="submit" class="btn btn-primary">Gönder</button>
+            <button type="reset" class="btn btn-primary">Temizle</button>
+            <button type="submit" class="btn btn-success">Gönder</button>
           </div>
         </form>
 
         <hr />
-        <h2 class="text-primary display-2">Blog List</h2>
+        <h2 class="text-primary display-2 text-center">Blog List</h2>
 
         <table id="blog-table" class="table table-hover table-striped">
           <thead>

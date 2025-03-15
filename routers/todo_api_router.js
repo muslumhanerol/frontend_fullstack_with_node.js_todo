@@ -112,4 +112,10 @@ router.delete("/:id", (req, res) => {
     }
 });
 
+//TÜM TODO SİLME (ALL DELETE)
+
+
+
+
+
 module.exports = router;

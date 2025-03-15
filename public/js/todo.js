@@ -153,6 +153,12 @@ $(document).ready(function () {
     });
 
 
+    //Tümünü Sill   
+
+
+
+
+
     const fetchTodoList = () => {
         $.ajax({
             url: "/todo/api/",
@@ -169,7 +175,7 @@ $(document).ready(function () {
               <td>${item.createdAt}</td>
               <td>
                 <button class="btn btn-warning btn-sm edit-btn"><i class="fa-solid fa-eraser"></i></button>
-                <button class="btn btn-danger btn-sm delete-btn"><i class="fa-solid fa-trash-can"></i></button>
+                <button class="btn btn-danger btn-sm delete-btn"><i class="fa-solid fa-trash-can"></i></button>                               
               </td>
             </tr>
           `);
