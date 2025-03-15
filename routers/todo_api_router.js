@@ -34,8 +34,8 @@ const writeDB = (data) => {
 // TODO OLUŞTURMA (CREATE)
 router.post("/", (req, res) => {
     try {
-        const { todoHeader, todoContent } = req.body;
-        if (!todoHeader || !todoContent) {
+        const { todoHeader, todoContent, todoCategory } = req.body;
+        if (!todoHeader || !todoContent || !todoCategory) {
             return handleError(res, "Tüm alanlar gereklidir!");
         }
 
@@ -44,6 +44,7 @@ router.post("/", (req, res) => {
             id: db.todos.length ? db.todos[db.todos.length - 1].id + 1 : 1,
             todoHeader,
             todoContent,
+            todoCategory,
             createdAt: new Date().toISOString(),
         };
 

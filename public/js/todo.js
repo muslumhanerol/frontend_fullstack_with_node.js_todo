@@ -5,6 +5,14 @@ $(document).ready(function () {
     let updateId = null;
     const maxCharacters = 500;
 
+    const resetForm = () => {
+        $("#todoHeader").val("");
+        $("#todoContent").val("");
+        $("#todoCategory").val("");
+        isUpdating = false;
+        updateId = null;
+    };
+
     const clearErrors = () => {
         $(".error-message, .valid-message").remove();
     };
@@ -25,10 +33,10 @@ $(document).ready(function () {
 
 
     //Todo Kategori
-    const categories = ["Eğitim", "Finans", "Sağlık", "Sosyal"]
-    categories.forEach((category) => {
-        $("#category").append(`<option value="${category}">${category}</option>`)
-    });
+    // const categories = ["Eğitim", "Finans", "Sağlık", "Sosyal"]
+    // categories.forEach((todoCategory) => {
+    //     $("#category").append(`<option value="${todoCategory}">${todoCategory}</option>`)
+    // });
 
 
     const updateCharCount = () => {
@@ -80,6 +88,7 @@ $(document).ready(function () {
         const todoData = {
             todoHeader: $("#todoHeader").val(),
             todoContent: $("#todoContent").val(),
+            todoCategory: $("#todoCategory").val(),
             _csrf: $("input[name='_csrf']").val(),
         };
 
@@ -111,6 +120,7 @@ $(document).ready(function () {
 
         $("#todoHeader").val(row.find("td:eq(1)").text());
         $("#todoContent").val(row.find("td:eq(2)").text());
+        $("#todoCategory").val(row.find("td:eq(3)").text());
         isUpdating = true;
         $("#submit-btn").text("Güncelle");
 
@@ -154,7 +164,8 @@ $(document).ready(function () {
             <tr data-id="${item.id}">
               <td>${item.id}</td>
               <td>${item.todoHeader}</td>
-              <td>${item.todoContent}</td>             
+              <td>${item.todoContent}</td>
+              <td>${item.todoCategory || "Bilinmiyor"}</td>
               <td>${item.createdAt}</td>
               <td>
                 <button class="btn btn-warning btn-sm edit-btn"><i class="fa-solid fa-eraser"></i></button>
