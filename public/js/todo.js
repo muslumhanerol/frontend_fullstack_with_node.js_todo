@@ -1,4 +1,6 @@
+//Sayfa yüklendiğinde çalışacak. Sayfa yüklenmeden javascrip çalışmayacağı için hata alınmaz.
 $(document).ready(function () {
+
     let isUpdating = false;
     let updateId = null;
     const maxCharacters = 500;
@@ -21,6 +23,14 @@ $(document).ready(function () {
         );
     };
 
+
+    //Todo Kategori
+    const categories = ["Eğitim", "Finans", "Sağlık", "Sosyal"]
+    categories.forEach((category) => {
+        $("#category").append(`<option value="${category}">${category}</option>`)
+    });
+
+
     const updateCharCount = () => {
         const todoContent = $("#todoContent").val();
         const charCount = todoContent.length;
@@ -31,7 +41,7 @@ $(document).ready(function () {
             $("#char-count").removeClass("text-success").addClass("text-danger");
             showError(
                 "#todoContent",
-                "Karakter sınırını aştınız. En fazla 2000 karakter girebilirsiniz."
+                "Karakter sınırını aştınız. En fazla 500 karakter girebilirsiniz."
             );
         } else {
             $("#char-count").removeClass("text-danger").addClass("text-success");
