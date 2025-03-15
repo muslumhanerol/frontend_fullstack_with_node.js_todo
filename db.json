@@ -19,12 +19,6 @@
       "_csrf": "XXVDRZD0-lMQgWSArxm9Asb-KL0hf9y28aYY"
     },
     {
-      "id": 2,
-      "todoHeader": "Yeni görev başlığı eklendi.",
-      "todoContent": "Yeni görev içeriği eklendi.",
-      "createdAt": "2025-03-14T11:19:23.124Z"
-    },
-    {
       "id": 3,
       "todoHeader": "Proje Sunumu",
       "todoContent": "16 Mart Sunum Yapılacak",
