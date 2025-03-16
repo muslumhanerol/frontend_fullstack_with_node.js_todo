@@ -21,9 +21,10 @@
     {
       "id": 3,
       "todoHeader": "Proje Sunumu",
-      "todoContent": "16 Mart Sunum Yapılacak",
+      "todoContent": "16 Mart Sunum Yapıldı55",
       "todoCategory": "Eğitim",
-      "createdAt": "2025-03-15T19:05:39.589Z"
+      "createdAt": "2025-03-15T19:05:39.589Z",
+      "_csrf": "eFpBMWaL-tpBXmHI3pMeKopsnfOvJJTWtLRk"
     },
     {
       "id": 4,
