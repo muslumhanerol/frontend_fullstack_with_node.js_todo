@@ -33,13 +33,6 @@
       "todoCategory": "Eğitim",
       "createdAt": "2025-03-15T19:05:39.589Z",
       "_csrf": "eFpBMWaL-tpBXmHI3pMeKopsnfOvJJTWtLRk"
-    },
-    {
-      "id": 4,
-      "todoHeader": "MB",
-      "todoContent": "MB Faiz kararı açıklanacak 17 Nisan 2025.",
-      "todoCategory": "Finans",
-      "createdAt": "2025-03-15T19:08:36.793Z"
     }
   ]
 }
